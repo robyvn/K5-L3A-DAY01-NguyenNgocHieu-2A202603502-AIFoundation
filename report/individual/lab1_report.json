@@ -1,0 +1,77 @@
+{
+ "seed": 7426,
+ "predictions": {
+  "ml_f1": {
+   "text": "F1 ~0.87, precision cao hơn recall vì tin rác chứa nhiều từ đặc trưng giúp mô hình dễ nhận diện chính xác ít bị nhầm, trong khi một số tin rác tinh vi viết giọng tự nhiên dễ bị bỏ sót làm giảm recall.",
+   "time": "10:37:02"
+  },
+  "ml_lr": {
+   "text": "lr=0.001 thì đường loss đi ngang , lr=50 thì dao động hỗn loạn",
+   "time": "11:21:08"
+  },
+  "dl_curve": {
+   "text": "(1) val loss chỉ giảm đến 1 mức độ nhất định khi xảy ra hiện tượng overfitting do mlp có 128000 tham số, với input data là BoW thường chỉ cần dùng logistic regression là tối ưu nên mlp sẽ bằng hoặc kém hơn",
+   "time": "14:07:14"
+  },
+  "dl_relu": {
+   "text": " nếu bỏ nn.ReLU() mạng 2 lớp linear liên tiếp tương đương mô hình logistic regression, F1 ko thay đổi đáng kể",
+   "time": "14:18:22"
+  }
+ },
+ "checks": {
+  "1.1 vectorize": true,
+  "1.2 sigmoid / predict_proba": true,
+  "1.3 train_logreg": true,
+  "1.4 metrics": true,
+  "2.1 build_mlp": true,
+  "2.2 train_mlp": true
+ },
+ "experiments": [
+  {
+   "key": "ml_f1",
+   "time": "10:38:31"
+  },
+  {
+   "key": "ml_lr",
+   "time": "11:21:13"
+  },
+  {
+   "key": "ml_lr",
+   "time": "11:22:58"
+  },
+  {
+   "key": "dl_curve",
+   "time": "14:07:21"
+  },
+  {
+   "key": "dl_relu",
+   "time": "14:18:28"
+  }
+ ],
+ "results": {
+  "1. BoW + LogReg (tự code)": {
+   "accuracy": 0.983225806451613,
+   "precision": 1.0,
+   "recall": 0.8586956521739131,
+   "f1": 0.9239766081871346,
+   "f1_SUB": 0.9473684210526316,
+   "train_s": 3.8322033710010146,
+   "msg_per_s": 26015.456269111324,
+   "p50_ms": 0.04566099960356951,
+   "p95_ms": 0.09825459947023764,
+   "usd_per_1k": 0.0
+  },
+  "2. BoW + MLP (deep learning)": {
+   "accuracy": 0.9883870967741936,
+   "precision": 0.9770114942528736,
+   "recall": 0.9239130434782609,
+   "f1": 0.9497206703910613,
+   "f1_SUB": 0.9743589743589743,
+   "train_s": 10.659604751002917,
+   "msg_per_s": 21761.136346051382,
+   "p50_ms": 0.2935765005531721,
+   "p95_ms": 0.38718339983461186,
+   "usd_per_1k": 0.0
+  }
+ }
+}
